@@ -1,8 +1,8 @@
 from datetime import datetime, timezone
 import logging
+import uvicorn
 
-
-class CustomFormatter(logging.Formatter):
+class OxariFormatter(logging.Formatter):
     COLOR_CODES = {
         'INFO': '\033[32m',  # Green
         'DEBUG': '\033[36m',  # Cyan
@@ -29,3 +29,24 @@ class CustomFormatter(logging.Formatter):
     def colorize_level_name(self, level_name):
         color_code = self.COLOR_CODES.get(level_name, '')
         return f"{color_code}{level_name}{self.RESET_CODE}"
+
+
+def generate_log_config():
+    log_config = uvicorn.config.LOGGING_CONFIG
+    handler = logging.StreamHandler()
+    handler.setFormatter(OxariFormatter())
+
+    for logger_name in ("uvicorn", "uvicorn.access", "uvicorn.error"):
+        log_config["loggers"][logger_name]["handlers"] = ["custom"]
+        log_config["handlers"]["custom"] = {
+        "class": "logging.StreamHandler",
+        "formatter": "custom",
+    }
+        log_config["formatters"]["custom"] = {
+        "()": OxariFormatter,
+    }
+
+    # Disable propagation for "uvicorn.access" and "uvicorn.error" loggers
+    log_config["loggers"]["uvicorn.access"]["propagate"] = False
+    log_config["loggers"]["uvicorn.error"]["propagate"] = False
+    return log_config
