@@ -5,6 +5,9 @@ description = "Contains utility code shared across the oxari services"
 authors = ["Olusanmi Hundogan <o.hundogan@gmail.com>"]
 license = "Oxari B.V. License"
 readme = "README.md"
+packages = [
+    {include = "oxari"}
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -19,6 +22,7 @@ yapf = "^0.32.0"
 pipreqs = "^0.4.11"
 isort = "^5.11.4"
 pylint = "^2.16.0"
+
 
 [build-system]
 requires = ["poetry-core"]
