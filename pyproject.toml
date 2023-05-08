@@ -11,16 +11,12 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
-uvicorn = "^0.22.0"
+uvicorn = "^0.20.0"
 loguru = "^0.7.0"
-jupyter = "^1.0.0"
 fastapi = "^0.89.0"
-colorlog = "^6.7.0"
 
 [tool.poetry.group.dev.dependencies]
 yapf = "^0.32.0"
-pipreqs = "^0.4.11"
-isort = "^5.11.4"
 pylint = "^2.16.0"
 
 
