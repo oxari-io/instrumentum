@@ -14,7 +14,7 @@ python = "^3.9"
 uvicorn = "^0.22.0"
 loguru = "^0.7.0"
 jupyter = "^1.0.0"
-fastapi = "^0.95.1"
+fastapi = "^0.89.0"
 colorlog = "^6.7.0"
 
 [tool.poetry.group.dev.dependencies]
