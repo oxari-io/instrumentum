@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "instrumentum"
+version = "0.1.0"
+description = "Contains utility code shared across the oxari services"
+authors = ["Olusanmi Hundogan <o.hundogan@gmail.com>"]
+license = "Oxari B.V. License"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+uvicorn = "^0.22.0"
+loguru = "^0.7.0"
+jupyter = "^1.0.0"
+fastapi = "^0.95.1"
+colorlog = "^6.7.0"
+
+[tool.poetry.group.dev.dependencies]
+yapf = "^0.32.0"
+pipreqs = "^0.4.11"
+isort = "^5.11.4"
+pylint = "^2.16.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
