@@ -13,11 +13,11 @@ packages = [
 python = "^3.9"
 uvicorn = "^0.20.0"
 loguru = "^0.7.0"
-fastapi = "^0.89.0"
 
 [tool.poetry.group.dev.dependencies]
 yapf = "^0.32.0"
 pylint = "^2.16.0"
+fastapi = "^0.95.1"
 
 
 [build-system]
