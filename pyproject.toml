@@ -13,11 +13,17 @@ packages = [
 python = "^3.9"
 loguru = "^0.7.0"
 uvicorn = "^0.20.0"
+xhtml2pdf = "^0.2.11"
+aws-requests-auth = "^0.4.3"
+python-dotenv = "^1.0.0"
+
 
 [tool.poetry.group.dev.dependencies]
 yapf = "^0.32.0"
 pylint = "^2.16.0"
 fastapi = "^0.95.1"
+pytest = "^7.3.1"
+pytest-mock = "^3.10.0"
 
 [tool.poetry.extras]
 uvicorn_support = ["uvicorn"]
