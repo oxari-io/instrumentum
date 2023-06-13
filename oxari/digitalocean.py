@@ -19,8 +19,6 @@ def _get_date_string():
 
 
 
-
-
 def _construct_do_url(file_name, do_space, do_region):
     divider = "" if file_name[0] == "/" else "/"
     url = f'https://{do_space}.{do_region}.digitaloceanspaces.com{divider}{file_name}'
