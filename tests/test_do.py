@@ -36,7 +36,7 @@ TEST_FILE_NAME = "test.txt"
 @pytest.mark.order(1)
 def test_put_object():
     # open file in binary
-    with open("tests/test.txt", "rb") as file:
+    with open(f"tests/{TEST_FILE_NAME}", "rb") as file:
         binary_data = file.read()
     resp = put_object(
         do_storage_type=STORAGETYPE,
