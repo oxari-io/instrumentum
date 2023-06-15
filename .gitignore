@@ -7,6 +7,7 @@ __pycache__/
 *.so
 
 
+
 # Distribution / packaging
 .Python
 build/
@@ -75,6 +76,9 @@ docs/_build/
 # PyBuilder
 .pybuilder/
 target/
+
+*.pdf
+*.instrumentum/uuuid8_1234567890123456789012345678901.pdf
 
 # Jupyter Notebook
 .ipynb_checkpoints
