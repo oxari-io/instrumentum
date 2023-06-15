@@ -394,7 +394,7 @@ graph = ["objgraph (>=1.7.2)"]
 name = "exceptiongroup"
 version = "1.1.1"
 description = "Backport of PEP 654 (exception groups)"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -477,7 +477,7 @@ files = [
 name = "iniconfig"
 version = "2.0.0"
 description = "brain-dead simple config-ini parsing"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -692,7 +692,7 @@ asn1crypto = ">=1.5.1"
 name = "packaging"
 version = "23.1"
 description = "Core utilities for Python packages"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -800,7 +800,7 @@ test = ["appdirs (==1.4.4)", "covdefaults (>=2.3)", "pytest (>=7.3.1)", "pytest-
 name = "pluggy"
 version = "1.0.0"
 description = "plugin and hook calling mechanisms for python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -1004,7 +1004,7 @@ files = [
 name = "pytest"
 version = "7.3.1"
 description = "pytest: simple powerful testing with Python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -1040,6 +1040,24 @@ pytest = ">=5.0"
 
 [package.extras]
 dev = ["pre-commit", "pytest-asyncio", "tox"]
+
+[[package]]
+name = "pytest-order"
+version = "1.1.0"
+description = "pytest plugin to run your tests in a specific order"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "pytest-order-1.1.0.tar.gz", hash = "sha256:139d25b30826b78eebb42722f747eab14c44b88059d7a71d4f79d14a057269a5"},
+    {file = "pytest_order-1.1.0-py3-none-any.whl", hash = "sha256:3b3730969c97900fa5cd31ecff80847680ed56b2490954565c14949ba60d9371"},
+]
+
+[package.dependencies]
+pytest = [
+    {version = ">=5.0", markers = "python_version < \"3.10\""},
+    {version = ">=6.2.4", markers = "python_version >= \"3.10\""},
+]
 
 [[package]]
 name = "python-bidi"
@@ -1312,7 +1330,7 @@ test = ["flake8", "isort", "pytest"]
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -1576,4 +1594,4 @@ uvicorn-support = []
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "e3a12af3de70afbd3ad25f138b6a2833b971c9952227f4e7f173829d740faf46"
+content-hash = "29c37728ba6db995cc28593170d93e7e206202268099db50058916a765ac31d7"
