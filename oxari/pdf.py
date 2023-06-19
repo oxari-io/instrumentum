@@ -34,12 +34,12 @@ def _fill_pdf(template, values):
     return pdf_stream
 
 
-def _save_document(binary_data, args, space_path, save_locally=False):
+def _save_document(binary_data, args, space_path, save_locally=False, do_space=DO_SPACE, do_region=DO_REGION, do_key=DO_KEY, do_secret=DO_SECRET):
     user_id = args.get("user_id")
     order_id = args.get("order_id")
     # # UPLOAD PDF TO DO BUCKET
     if not save_locally:
-        response = _save_pdf_remotely(binary_data, user_id, order_id, space_path)
+        response = _save_pdf_remotely(binary_data, user_id, order_id, space_path, do_space, do_region, do_key, do_secret)
     if save_locally:
         response = _save_pdf_locally(binary_data, user_id, order_id)
 
@@ -48,11 +48,10 @@ def _save_document(binary_data, args, space_path, save_locally=False):
 
 def _save_pdf_remotely(binary_data, user_id, order_id, space_path, do_space=DO_SPACE, do_region=DO_REGION, do_key=DO_KEY, do_secret=DO_SECRET):
     do_file_name = _create_key_name(user_id, order_id, space_path)
-    
 
     # Define the file name and content type
     _ = put_object(binary_data, do_file_name, do_space, do_region, do_key, do_secret, "application/pdf")
-    return check_object(do_file_name, DO_SPACE, DO_REGION, DO_KEY, DO_SECRET)
+    return check_object(do_file_name, do_space, do_region, do_key, do_secret)
 
 
 def _save_pdf_locally(binary_data, user_id, order_id):
