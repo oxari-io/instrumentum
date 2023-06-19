@@ -39,7 +39,6 @@ def test_put_object():
     with open(f"tests/{TEST_FILE_NAME}", "rb") as file:
         binary_data = file.read()
     resp = put_object(
-        do_storage_type=STORAGETYPE,
         file_name=TEST_FILE_NAME,
         binary_data=binary_data,
         do_secret=DO_SECRET,

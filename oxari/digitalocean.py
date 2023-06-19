@@ -1,4 +1,3 @@
-
 from datetime import datetime, timedelta, date
 
 from dotenv import load_dotenv
@@ -18,16 +17,14 @@ def _get_date_string():
     return date
 
 
-
 def _construct_do_url(file_name, do_space, do_region):
     divider = "" if file_name[0] == "/" else "/"
     url = f'https://{do_space}.{do_region}.digitaloceanspaces.com{divider}{file_name}'
     return url
 
 
-
-
-def put_object(binary_data, file_name, do_space, do_region, do_storage_type, do_key, do_secret, content_type="application/octet-stream"):
+def put_object(binary_data, file_name, do_space, do_region, do_key, do_secret, content_type="application/octet-stream"):
+    do_storage_type = "STANDARD"
     headers = {
         "Content-Type": content_type,
         "x-amz-storage-class": do_storage_type,
@@ -41,10 +38,7 @@ def put_object(binary_data, file_name, do_space, do_region, do_storage_type, do_
                            aws_service='s3')
 
     url = _construct_do_url(file_name, do_space, do_region)
-    response = requests.put(url, 
-                            data=binary_data, 
-                            headers=headers, 
-                            auth=auth)
+    response = requests.put(url, data=binary_data, headers=headers, auth=auth)
 
     if response.status_code != 200:
         response.raise_for_status()
@@ -66,7 +60,7 @@ def check_object(file_name, do_space, do_region, do_key, do_secret):
         response.raise_for_status()
     content_size = response.headers.get('content-length')
     content_type = response.headers.get('content-type')
-    return {"file": response.url, "file_size": int(content_size), "file_type":content_type}
+    return {"file": response.url, "file_size": int(content_size), "file_type": content_type}
 
 
 def get_object(file_name, do_space, do_region, do_key, do_secret):
@@ -90,7 +84,6 @@ def get_object(file_name, do_space, do_region, do_key, do_secret):
     # Send the GET request
     url = _construct_do_url(file_name, do_space, do_region)
 
-    
     response = requests.get(url, headers=headers, auth=auth)
 
     if response.status_code != 200:

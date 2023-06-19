@@ -1,5 +1,6 @@
 import os
 import io
+from dotenv import load_dotenv
 import pytest
 from pathlib import Path
 
@@ -8,7 +9,6 @@ from jinja2 import Template
 from requests import HTTPError
 
 
-from dotenv import load_dotenv
 
 from oxari.pdf import (
     _create_key_name,
