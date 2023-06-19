@@ -59,8 +59,8 @@ def _save_pdf_locally(binary_data, user_id, order_id, destination_folder):
     key_name = Path(f"{user_id}_{order_id}.pdf")
     destination_folder = Path(destination_folder)
     destination_folder.mkdir(parents=True, exist_ok=True)
-    
-    final_file = destination_folder / key_name
+
+    final_file = '.' / destination_folder / key_name
     with io.open(final_file.absolute().as_posix(), 'wb') as f:
         result = f.write(binary_data)
 
