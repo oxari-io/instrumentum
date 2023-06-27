@@ -16,6 +16,7 @@ async def root():
     logger.warning('W-Hello World')
     logger.debug('D-Hello World')
     logger.error('E-Hello World')
+    raise Exception('This is an exception')
     return {"message": "Hello World"}
 
 
@@ -24,4 +25,8 @@ async def root():
 log_config = generate_log_config()
 
 # Run the FastAPI app with Uvicorn
-uvicorn.run(app, host="127.0.0.1", port=8000, log_config=log_config)
+
+if __name__ == "__main__":
+    uvicorn.run("test-logger:app", host="127.0.0.1", port=8000, log_config=log_config, reload=True)
+
+    # uvicorn.run("test-logger:app", host="127.0.0.1", port=8000, reload=True)

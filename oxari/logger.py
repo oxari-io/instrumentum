@@ -1,5 +1,6 @@
 from datetime import datetime, timezone
 import logging
+from uvicorn.logging import AccessFormatter
 
 
 class OxariFormatter(logging.Formatter):
@@ -24,7 +25,13 @@ class OxariFormatter(logging.Formatter):
 
         color_code = self.COLOR_CODES.get(level_name, '')
 
-        return f"{color_code}{level_name:.1}{self.RESET_CODE}: {time_with_offset} | {name} | {message}"
+        if record.exc_info:  # Check if exception info exists
+            # Format exception info
+            exception_msg = self.formatException(record.exc_info)
+            return f"{color_code}{level_name:.1}{self.RESET_CODE}: {time_with_offset} | {name} | {message}\n{exception_msg}"
+        else:
+            return f"{color_code}{level_name:.1}{self.RESET_CODE}: {time_with_offset} | {name} | {message}"
+
 
 
 def generate_log_config() -> dict:
@@ -61,7 +68,7 @@ def generate_log_config() -> dict:
                 "propagate": False
             },
             "uvicorn.error": {
-                "level": "INFO"
+                "level": "INFO",
             },
             "uvicorn.access": {
                 "handlers": ["access"],
@@ -70,18 +77,20 @@ def generate_log_config() -> dict:
             },
         },
     }
-    handler = logging.StreamHandler()
-    handler.setFormatter(OxariFormatter())
+    # handler = logging.StreamHandler()
+    # handler.setFormatter(OxariFormatter())
 
     for logger_name in ("uvicorn", "uvicorn.access", "uvicorn.error"):
         log_config["loggers"][logger_name]["handlers"] = ["custom"]
-        log_config["handlers"]["custom"] = {
-            "class": "logging.StreamHandler",
-            "formatter": "custom",
-        }
-        log_config["formatters"]["custom"] = {
-            "()": OxariFormatter,
-        }
+
+    log_config["handlers"]["custom"] = {
+        "class": "logging.StreamHandler",
+        "formatter": "custom",
+        "stream": "ext://sys.stdout",
+    }
+    log_config["formatters"]["custom"] = {
+        "()": OxariFormatter,
+    }
 
     # Disable propagation for "uvicorn.access" and "uvicorn.error" loggers
     log_config["loggers"]["uvicorn.access"]["propagate"] = False
