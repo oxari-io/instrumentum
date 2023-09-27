@@ -43,14 +43,24 @@ class ScopeEnum(enum.IntEnum):
     SCOPE_3 = 3
 
 
-class UserEmail(BaseModel):
+class User(BaseModel):
+    user_id: str = Field(default="default", title="User Id", description="User ID", example="23456-23456-6543-3567")
+
+
+class UserEmail(User):
     email: EmailStr = Field(title="Email", description="User e-mail address", example="o.hundogan@oxari.io")
+
 
 class UserCredentials(UserEmail):
     password: str = Field(title="Password", description="User password", example="Password123!")
 
+
 class UserIdentity(UserCredentials):
     username: str = Field(title="Username", description="Your user name", example="ZizekSlavoj")
+
+
+class UserWithWallet(UserIdentity):
+    n_credits: int = Field(title="Number of Credits", description="Your credit budget", example=100)
 
 
 class JWTToken(BaseModel):
@@ -65,11 +75,13 @@ class DocumentKey(BaseModel):
         example=LegalDocumentType.SLA,
     )
 
+
 class UserAddressInformation(BaseModel):
     city: str = Field(example="Las Vegas")
     country: str = Field(example="USA")
     street: str = Field(example="Route-66")
     zip_code: str = Field(example="123456")
+
 
 class UserContactInformation(BaseModel):
     customer_name: str = Field(example="John Doe")
@@ -77,6 +89,7 @@ class UserContactInformation(BaseModel):
     phone: str = Field(example="+49 (0)176 666 42 69")
     email: EmailStr = Field(example="John@Doe.de")
     vat_number: str = Field(example="NL34567654323456765432345")
+
 
 class UserInformation(UserAddressInformation, UserContactInformation):
     pass
