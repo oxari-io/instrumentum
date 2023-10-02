@@ -85,10 +85,11 @@ class UserAddressInformation(BaseModel):
 
 class UserContactInformation(BaseModel):
     customer_name: str = Field(example="John Doe")
-    company_name: str = Field(example="Doe Ltd.")
+    company_name: str = Field(default="", example="Doe Ltd.")
     phone: str = Field(example="+49 (0)176 666 42 69")
     email: EmailStr = Field(example="John@Doe.de")
-    vat_number: str = Field(example="NL34567654323456765432345")
+    vat_number: str = Field(default="", example="NL34567654323456765432345", description="Value added tax number")
+    coc_number: str = Field(default="", example="NLCOMPANYTEST42", description="Chamber of Commerce number")
 
 
 class UserInformation(UserAddressInformation, UserContactInformation):
