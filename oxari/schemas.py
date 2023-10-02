@@ -84,10 +84,11 @@ class UserAddressInformation(BaseModel):
 
 
 class UserContactInformation(BaseModel):
+    user_id: Optional[str] = Field(example="0209-1993-1234-1111")
     customer_name: str = Field(example="John Doe")
-    company_name: str = Field(default="", example="Doe Ltd.")
     phone: str = Field(example="+49 (0)176 666 42 69")
     email: EmailStr = Field(example="John@Doe.de")
+    company_name: str = Field(default="", example="Doe Ltd.")
     vat_number: str = Field(default="", example="NL34567654323456765432345", description="Value added tax number")
     coc_number: str = Field(default="", example="NLCOMPANYTEST42", description="Chamber of Commerce number")
 
@@ -99,10 +100,10 @@ class UserInformation(UserAddressInformation, UserContactInformation):
 class OrderInformation(BaseModel):
     order_id: Optional[str] = Field(example="0209-1993-1234-1111")
     user_id: Optional[str] = Field(example="0209-1993-1234-1111")
-    service: str = Field(example="grow")
-    price: str = Field(example=5000)
-    subtotal: str = Field(example=5000)
-    netamount: str = Field(example=100)
-    unitprice: str = Field(example=5000)
-    startdate: str = Field(example="69-69-69")
-    enddate: str = Field(example="69-69-69")
+    plan_type: str = Field(example="grow")
+    gross_amount: str = Field(example=5000)
+    tax_amount: str = Field(example=950)    
+    net_amount: str = Field(example=4050)
+    start_date: str = Field(example="69-69-69")
+    end_date: str = Field(example="69-69-69")
+

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "instrumentum"
-version = "0.1.0"
+version = "1.0.0"
 description = "Contains utility code shared across the oxari services"
 authors = ["Olusanmi Hundogan <o.hundogan@gmail.com>"]
 license = "Oxari B.V. License"
