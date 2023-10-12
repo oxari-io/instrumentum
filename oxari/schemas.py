@@ -44,23 +44,23 @@ class ScopeEnum(enum.IntEnum):
 
 
 class User(BaseModel):
-    user_id: str = Field(default="default", title="User Id", description="User ID", example="23456-23456-6543-3567")
+    user_id: str = Field(default="default", title="User Id", description="User ID", example="23456-23456-6543-1167")
 
 
 class UserEmail(User):
-    email: EmailStr = Field(title="Email", description="User e-mail address", example="o.hundogan@oxari.io")
+    email: EmailStr = Field(title="Email", description="User e-mail address", example="joe.doe@company.com")
 
 
 class UserCredentials(UserEmail):
-    password: str = Field(title="Password", description="User password", example="Password123!")
+    password: str = Field(title="Password", description="User password", example="thepassword")
 
 
 class UserIdentity(UserCredentials):
-    username: str = Field(title="Username", description="Your user name", example="ZizekSlavoj")
+    username: str = Field(title="Username", description="Your user name", example="joedoe12")
 
 
 class UserWithWallet(UserIdentity):
-    n_credits: int = Field(title="Number of Credits", description="Your credit budget", example=100)
+    n_credits: int = Field(title="Number of Credits", description="Your credit budget", example=200)
 
 
 class JWTToken(BaseModel):
